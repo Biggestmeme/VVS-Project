@@ -1,0 +1,10 @@
+{
+    "verbose": false,
+    "PORT_Chat": 6001,
+    "PORT_App": 64502,
+    "ServerIP": "localhost",
+    "state_running": 0,
+    "state_refuseNewConnections": 1,
+    "state_maintanance": 2,
+    "state_stopped": 3
+}

@@ -1,0 +1,4 @@
+{
+    "ReceiveChatMessageFromClient": "sendToServer",
+    "BroadcastChatMessage": "sendToClient"
+}
