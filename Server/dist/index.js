@@ -31,6 +31,33 @@ const server_json_1 = __importDefault(require("./config/server.json"));
 const server_1 = require("./server");
 const chat = __importStar(require("./controllers/chat/chat"));
 const userRoutes = __importStar(require("./routes/user"));
+const Iroh = require("iroh");
+const { performance } = require('perf_hooks');
+let code = `
+function main(n) {
+  let res = 0;
+  let ii = 0;
+  while (++ii < 10000) {
+    res += ii;
+  };
+  return res;
+};
+main(3);
+`;
+let stage = new Iroh.Stage(code);
+let now = 0;
+stage.addListener(Iroh.CALL).on("before", (e) => {
+    if (e.name === 'main') {
+        now = performance.now();
+    }
+})
+    .on("after", (e) => {
+    if (e.name === "main") {
+        let then = performance.now();
+        console.log(e.name, "took", then - now, "ms");
+    }
+});
+eval(stage.script);
 const port = 8080;
 const app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
@@ -38,9 +65,10 @@ app.use(userRoutes.router);
 server_1.Server.getInstance();
 const http_server_recvMessages = new http_1.default.Server(app);
 const socketio_recvMessages = new socket_io_1.default.Server(http_server_recvMessages, { cors: { origin: '*' } });
+/* istanbul ignore next */
 socketio_recvMessages.on("connection", function (socket) {
     if (server_1.Server.getServerState() == 0) {
-        console.log(chat.receiveChatMessage(socket));
+        chat.receiveChatMessage(socket);
     }
 });
 exports.serverListener = http_server_recvMessages.listen(server_json_1.default.PORT_Chat, () => {

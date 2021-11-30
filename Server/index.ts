@@ -8,6 +8,36 @@ import * as chat from './controllers/chat/chat';
 import * as nodeipc from 'node-ipc';
 import * as userRoutes from './routes/user';
 
+const Iroh = require("iroh");
+const {performance} = require('perf_hooks');
+
+let code = `
+function main(n) {
+  let res = 0;
+  let ii = 0;
+  while (++ii < 10000) {
+    res += ii;
+  };
+  return res;
+};
+main(3);
+`;
+
+let stage = new Iroh.Stage(code);
+let now = 0;
+stage.addListener(Iroh.CALL).on("before",(e) => {
+  if (e.name === 'main') {
+      now = performance.now();
+  }
+})
+.on("after", (e) => {
+  if (e.name === "main") {
+    let then = performance.now();
+    console.log(e.name, "took", then - now, "ms");
+  }
+});
+eval(stage.script);
+
 const port = 8080;
 
 const app = express();

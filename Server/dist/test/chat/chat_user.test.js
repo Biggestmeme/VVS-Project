@@ -23,10 +23,10 @@ const index_1 = require("../../index");
 const request = __importStar(require("supertest"));
 describe('loading express', function () {
     let server;
-    beforeEach(function () {
+    beforeAll(function () {
         server = index_1.serverListener;
     });
-    afterEach(function () {
+    afterAll(function () {
         server.close();
     });
     it('responds to /', function testSlash(done) {
@@ -39,9 +39,24 @@ describe('loading express', function () {
             .get('/foo/bar')
             .expect(404, done);
     });
-    it('responds to /addUser', function testPath(done) {
+    it('responds to /addUser?user=bogdan', function testPath(done) {
         request.default(server)
             .post('/addUser?user=bogdan')
             .expect(200, done);
+    });
+    it('responds to already added user /addUser?user=bogdan', function testPath(done) {
+        request.default(server)
+            .post('/addUser?user=bogdan')
+            .expect(400, done);
+    });
+    it('responds to /addUser?user=%3ebogdan%3f', function testPath(done) {
+        request.default(server)
+            .post('/addUser?user=%3ebogdan%3f')
+            .expect(400, done);
+    });
+    it('responds to /addUser?user=<script>alert(1)</script', function testPath(done) {
+        request.default(server)
+            .post('/addUser?user=<script>alert(1)</script')
+            .expect(400, done);
     });
 });
