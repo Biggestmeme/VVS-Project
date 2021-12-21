@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("../server");
 beforeAll(() => {
-    let server = server_1.Server.getInstance();
+    let server = server_1.Server.getInstance(64501, 0);
 });
 describe("Testing Server Methods", () => {
     test('Server Init State is 0', () => {

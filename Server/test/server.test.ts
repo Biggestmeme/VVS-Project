@@ -1,7 +1,7 @@
 import { Server } from '../server';
 
 beforeAll(() => {
-    let server : Server = Server.getInstance();
+    let server : Server = Server.getInstance(64501,0);
 })
 
 describe("Testing Server Methods", () => {

@@ -48,6 +48,7 @@ const receiveChatMessage = function (socket) {
     let last_message_sent_timestamp;
     let current_messate_send_timestamp;
     socket.on(socketMessages_json_1.default.ReceiveChatMessageFromClient, function (message) {
+        console.log(message);
         if (server_1.Server.getServerState() >= 2) {
             socket.disconnect();
             return null;

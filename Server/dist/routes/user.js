@@ -23,5 +23,7 @@ exports.router = void 0;
 const express = __importStar(require("express"));
 const chat_1 = require("../controllers/chat/chat");
 exports.router = express.Router();
-exports.router.post('/addUser', chat_1.addUser);
+exports.router.post('/addUser', function (req, res) {
+    (0, chat_1.addUser)(req, res);
+});
 module.exports = { router: exports.router };

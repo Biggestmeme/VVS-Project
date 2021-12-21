@@ -29,6 +29,7 @@ export const receiveChatMessage = function(socket:any) {
     let last_message_sent_timestamp : number;
     let current_messate_send_timestamp : number;
     socket.on(SocketConfig.ReceiveChatMessageFromClient, function(message) {
+        console.log(message);
         if(Server.getServerState() >= 2) {
             socket.disconnect();
             return null;

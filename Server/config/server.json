@@ -1,6 +1,6 @@
 {
     "verbose" : false,
-    "PORT_Chat" : 6001,
+    "PORT_Chat" : 6005,
     "PORT_App" : 64502,
     "ServerIP" : "localhost",
     "state_running" : 0,

@@ -1,0 +1,27 @@
+--> Wrapper Started as Console
+Launching a JVM...
+Unrecognized option: --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+JVM exited while loading the application.
+JVM Restarts disabled.  Shutting down.
+<-- Wrapper Stopped
+OpenSCManager failed - Access is denied. (0x5)
+--> Wrapper Started as Console
+Launching a JVM...
+Unrecognized option: --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+JVM exited while loading the application.
+JVM Restarts disabled.  Shutting down.
+<-- Wrapper Stopped
+The SonarQube service is not installed - The specified service does not exist as an installed service. (0x424)
+--> Wrapper Started as Console
+Launching a JVM...
+Unrecognized option: --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
+Error: Could not create the Java Virtual Machine.
+Error: A fatal exception has occurred. Program will exit.
+JVM exited while loading the application.
+JVM Restarts disabled.  Shutting down.
+<-- Wrapper Stopped
+The SonarQube service is not installed - The specified service does not exist as an installed service. (0x424)
